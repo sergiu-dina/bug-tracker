@@ -4,7 +4,7 @@ This application is a bug tracking system that keeps track of reported software 
 
 The app was built with ASP.NET CORE, MVC, C# and SQL. The front end was developed with HTML, JavaScript and Bootstrap. The database was built with SQL Server and hosted on Azure.
 
-When you check out the app, in the Login page I recommend to choose the option to Login as a Demo Admin in order to have access to all the features of the app.
+When you check out the app, in the Login page I recommend choosing the option to Login as a Demo Admin in order to have access to all the features of the app.
 
 Please visit the site and try it out: https://bugtracker-dinasergiu.azurewebsites.net
 
