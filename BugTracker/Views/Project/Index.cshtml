@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BugTracker.Areas.Identity.Data
+
+@inject SignInManager<BugTrackerUser> SignInManager
+
+@model IEnumerable<Project>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Projects</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h3>All the projects in the database</h3>
+    </div>
+    <div class="card-body">
+        @if ((SignInManager.IsSignedIn(User)) && ((User.IsInRole("Admin")) || (User.IsInRole("Project Manager"))))
+        {
+            <p>
+                <a class="btn btn-primary"
+                   asp-action="Create" asp-controller="Project">
+                    Create New Project
+                </a>
+            </p>
+        }
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model)
+                {
+                    <tr>
+                        <td>@project.Name</td>
+                        <td>@project.Description</td>
+                        <td>
+                            @if ((SignInManager.IsSignedIn(User)) && ((User.IsInRole("Admin")) || (User.IsInRole("Project Manager"))))
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = project.Id })
+                            }
+                            @Html.ActionLink("Details", "Details", new { id = project.Id })
+                            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Delete", "Delete", new { id = project.Id })
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

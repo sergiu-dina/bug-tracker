@@ -1,0 +1,30 @@
+﻿@model Ticket
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this ticket?</h3>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">@Model.Title</h4>
+    </div>
+    <div class="card-body">
+        <p class="card-text">@Model.Description</p>
+    </div>
+    <div class="card-footer">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            <a class="btn btn-primary"
+               asp-action="Index" asp-controller="Ticket">
+                Back to List
+            </a>
+        }
+    </div>
+</div>
+

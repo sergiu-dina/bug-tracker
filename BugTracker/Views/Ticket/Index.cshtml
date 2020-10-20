@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BugTracker.Areas.Identity.Data
+
+@inject SignInManager<BugTrackerUser> SignInManager
+
+@model List<BugTracker.ViewModels.DisplayTicketViewModel>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tickets</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h3>All the tickets in the database</h3>
+    </div>
+    <div class="card-body">
+            <p>
+                <a class="btn btn-primary"
+                   asp-action="Create" asp-controller="Ticket">
+                    Create New Ticket
+                </a>
+            </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Assigned Developer</th>
+                    <th scope="col">Ticket Priority</th>
+                    <th scope="col">Ticket Status</th>
+                    <th scope="col">Ticket Type</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.Ticket.Title</td>
+                    <td>@item.Project.Name</td>
+                    <td>
+                    @if(item.Ticket.Developer==null)
+                    {
+                       <p>None</p>
+                    }
+                    else
+                    {
+                        @item.Ticket.Developer
+                    }
+                    </td>
+                    <td>@item.Ticket.Priority</td>
+                    <td style ="word-break:break-all;">@item.Ticket.Status</td>
+                    <td>@item.Ticket.Type</td>
+                    <td>@item.Ticket.Created</td>
+                    <td>
+                        @if ((SignInManager.IsSignedIn(User)) && ((User.IsInRole("Admin")) || (User.IsInRole("Project Manager")) || (User.IsInRole("Developer"))))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Ticket.Id })
+                        }
+                        @Html.ActionLink("Details", "Details", new { id = item.Ticket.Id })
+                        @if (SignInManager.IsSignedIn(User) &&((User.IsInRole("Admin")) || (User.IsInRole("Project Manager"))))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Ticket.Id })
+                        }
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

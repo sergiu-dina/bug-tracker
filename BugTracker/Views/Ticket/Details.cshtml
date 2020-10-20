@@ -1,0 +1,133 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BugTracker.Areas.Identity.Data
+
+@inject SignInManager<BugTrackerUser> SignInManager
+
+@model BugTracker.ViewModels.DisplayTicketViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for @Html.DisplayFor(model => model.Ticket.Title)</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Ticket</h4>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Ticket Title</th>
+                    <th scope="col">Ticket Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.Ticket.Title)</td>
+                    <td>@Html.DisplayFor(model => model.Ticket.Description)</td>
+                </tr>
+            </tbody>
+
+            <thead>
+                <tr>
+                    <th scope="col">Assigned Developer</th>
+                    <th scope="col">Submitter</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @if (Model.Ticket.Developer == null)
+                        {
+                            <p>None</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(model => model.Ticket.Developer)
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(model => model.Ticket.Submitter)</td>
+                </tr>
+            </tbody>
+
+            <thead>
+                <tr>
+                    <th scope="col">Project</th>
+                    <th scope="col">Ticket Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.Project.Name)</td>
+                    <td>@Html.DisplayFor(model => model.Ticket.Priority)</td>
+                </tr>
+            </tbody>
+
+            <thead>
+                <tr>
+                    <th scope="col">Ticket Status</th>
+                    <th scope="col">Ticket Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.Ticket.Status)</td>
+                    <td>@Html.DisplayFor(model => model.Ticket.Type)</td>
+                </tr>
+            </tbody>
+
+            <thead>
+                <tr>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.Ticket.Created)</td>
+                    <td>
+                        @if (Model.Ticket.Updated != DateTime.MinValue)
+                        {
+                            @Html.DisplayFor(model => model.Ticket.Updated)
+                        }
+                        else
+                        {
+                            <p>----</p>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="card-footer">
+        <p>
+            @if (Model.FromTickets == true)
+            {
+                @if ((SignInManager.IsSignedIn(User)) && ((User.IsInRole("Admin")) || (User.IsInRole("Project Manager")) || (User.IsInRole("Developer"))))
+                {
+                    <a class="btn btn-primary"
+                       asp-action="Edit" asp-controller="Ticket" asp-route-id="@Model.Ticket.Id">
+                        Edit
+                    </a>
+                }
+                <a class="btn btn-primary"
+                   asp-action="Index" asp-controller="Ticket">
+                    Back to List
+                </a>
+            }
+            else
+            {
+                <a class="btn btn-primary"
+                   asp-action="Index" asp-controller="Project">
+                    Back to List
+                </a>
+            }
+
+            
+
+        </p>
+    </div>
+</div>

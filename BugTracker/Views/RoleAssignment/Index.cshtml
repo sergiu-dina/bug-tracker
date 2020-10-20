@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewBag.Title = "All Roles";
+}
+
+<h2>All Roles</h2>
+
+@foreach(var role in Model)
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <h4>Role</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@role.Name</h5>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary" 
+               asp-action="EditRole" asp-controller="RoleAssignment" asp-route-id="@role.Id">
+                Add Users
+            </a>
+        </div>
+    </div>
+}

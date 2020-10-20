@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Project>
+
+@{
+    ViewBag.Title = "All Projects";
+}
+
+<h2>All Projects</h2>
+
+@foreach (var project in Model)
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <h4>@project.Name</h4>
+        </div>
+        <div class="card-body">
+            <p class="card-text">@project.Description</p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary"
+               asp-action="EditProjectUsers" asp-controller="ProjectUsers" asp-route-id="@project.Id">
+                Select Manager
+            </a>
+        </div>
+    </div>
+}

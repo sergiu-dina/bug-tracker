@@ -1,0 +1,63 @@
+﻿@page
+@model DemoModel
+
+@{
+    ViewData["Title"] = "Demo Log in";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col text-center">
+        <form id="account" method="post">
+            <button type="submit">
+                <img src="~/img/2.png" />
+                <h5>Admin</h5>
+            </button>
+        </form>
+    </div>
+</div>
+    <!--<div class="col offset-md-1">
+        <form id="account" method="post">
+            <button type="submit">
+                <img src="~/img/1.png" />
+                <h5>Manager</h5>
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    &nbsp
+</div>
+
+<div class="row">
+    <div class="col offset-md-1">
+        <form id="account" method="post">
+            <button type="submit">
+                <img src="~/img/4.png" />
+                <h5>Developer</h5>
+            </button>
+        </form>
+    </div>
+    <div class="col offset-md-1">
+        <form id="account" method="post">
+            <button type="submit">
+                <img src="~/img/3.png" />
+                <h5>Submitter</h5>
+            </button>
+        </form>
+    </div>
+</div>-->
+<div class="row">
+    &nbsp
+</div>
+<div class="text-center">
+    Have an account? <a type="text/asp" href='/Identity/Account/Login'>Sign In</a>
+</div>
+<div class="row">
+    &nbsp
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
