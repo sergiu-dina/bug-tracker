@@ -1,6 +1,6 @@
 # Bug Tracker
 
-This application is a bug tracking system that keeps track of reported software bugs in software development projects. The software allows for users to submit tickets and those tickets are tracked through status from Open to Complete.
+This application is a bug tracking system that lets you keep track of software bugs in development projects. The software allows for users to submit tickets and those tickets are tracked through status from Open to Complete.
 
 The app was built with ASP.NET Core, MVC, C# and SQL. The front end was developed with HTML, JavaScript and Bootstrap. The database was built with SQL Server and hosted on Azure.
 
