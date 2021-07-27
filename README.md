@@ -6,6 +6,8 @@ The app was built with ASP.NET Core, MVC, C# and SQL. The front end was develope
 
 When you check out the app, in the Login page I recommend choosing the option to Login as a Demo Admin in order to have access to all the features of the app.
 
+## The website is no longer accesible
+
 Please visit the site and try it out: https://bugtracker-dinasergiu.azurewebsites.net
 
 ## Demo Accounts
